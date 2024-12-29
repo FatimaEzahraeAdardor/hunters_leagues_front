@@ -1,12 +1,12 @@
 <nav class="bg-yellow-700 dark:bg-yellow-800 fixed w-full z-20 top-0 start-0 border-b border-red-700">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img src="./assets/League_of_hunters-logo.webp" class="h-10" alt="Hunter's League Logo">
+    <a routerLink="" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="../../assets/League_of_hunters-logo.webp" class="h-10" alt="Hunter's League Logo">
       <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Hunters League</span>
     </a>
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <a
-        [routerLink]="['/login']"
+        routerLink="login"
       >
         <button
           type="button"
@@ -40,3 +40,7 @@
     </div>
   </div>
 </nav>
+
+
+
+<router-outlet></router-outlet>
