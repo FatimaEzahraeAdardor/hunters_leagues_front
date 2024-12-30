@@ -10,13 +10,13 @@
         Create an account
       </h1>
 
-      <form class="space-y-4">
+      <form  [formGroup]="form" (submit)="onSubmit()" class="space-y-4">
         <!-- Username -->
         <div>
           <label class="block mb-2 text-sm text-white">Username</label>
           <input
             type="text"
-            name="username"
+            formControlName="username"
             class="w-full p-2.5 bg-gray-700 border-gray-600 text-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
             placeholder="Enter username"
             required
@@ -28,7 +28,7 @@
           <label class="block mb-2 text-sm text-white">Email</label>
           <input
             type="email"
-            name="email"
+            formControlName="email"
             class="w-full p-2.5 bg-gray-700 border-gray-600 text-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
             placeholder="name@company.com"
             required
@@ -40,7 +40,7 @@
           <label class="block mb-2 text-sm text-white">Password</label>
           <input
             type="password"
-            name="password"
+            formControlName="password"
             class="w-full p-2.5 bg-gray-700 border-gray-600 text-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
             placeholder="••••••••"
             required
@@ -52,7 +52,7 @@
           <label class="block mb-2 text-sm text-white">First Name</label>
           <input
             type="text"
-            name="firstName"
+            formControlName="firstName"
             class="w-full p-2.5 bg-gray-700 border-gray-600 text-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
             placeholder="Enter first name"
             required
@@ -64,7 +64,7 @@
           <label class="block mb-2 text-sm text-white">Last Name</label>
           <input
             type="text"
-            name="lastName"
+            formControlName="lastName"
             class="w-full p-2.5 bg-gray-700 border-gray-600 text-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
             placeholder="Enter last name"
             required
@@ -76,7 +76,7 @@
           <label class="block mb-2 text-sm text-white">CIN</label>
           <input
             type="text"
-            name="cin"
+            formControlName="cin"
             class="w-full p-2.5 bg-gray-700 border-gray-600 text-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
             placeholder="Enter CIN"
             required
@@ -88,7 +88,7 @@
           <label class="block mb-2 text-sm text-white">Nationality</label>
           <input
             type="text"
-            name="nationality"
+            formControlName="nationality"
             class="w-full p-2.5 bg-gray-700 border-gray-600 text-white rounded-lg focus:ring-blue-500 focus:border-blue-500"
             placeholder="Enter nationality"
             required
@@ -97,6 +97,7 @@
 
         <button
           type="submit"
+          [disabled]="form.invalid"
           class="w-full py-2.5 mt-4 text-white bg-blue-600 hover:bg-blue-700 rounded-lg"
         >
           Create Account
