@@ -1,46 +1,133 @@
-<nav class="bg-yellow-700 dark:bg-yellow-800 fixed w-full z-20 top-0 start-0 border-b border-red-700">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a routerLink="" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img src="../../assets/League_of_hunters-logo.webp" class="h-10" alt="Hunter's League Logo">
-      <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Hunters League</span>
+
+<header class="flex shadow-md py-4 px-4 sm:px-10 bg-white tracking-wide relative z-50">
+  <div class="flex flex-wrap items-center gap-4 w-full">
+    <!-- Logo -->
+    <a href="javascript:void(0)">
+      <img src="https://wordpress.vecurosoft.com/huntar/wp-content/uploads/2023/07/logo.svg" alt="Readymade UI Logo" class="w-36">
+
     </a>
-    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-      <a
-        routerLink="login"
-      >
-        <button
-          type="button"
-          class="text-white bg-yellow-500 hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-yellow-700 dark:hover:bg-yellow-800 dark:focus:ring-yellow-500">
-          Get started
-        </button>
-      </a>
-      <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:hover:bg-yellow-700 dark:focus:ring-yellow-600" aria-controls="navbar-sticky" aria-expanded="false">
-        <span class="sr-only">Open main menu</span>
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+
+    <!-- Navigation Menu -->
+    <div [ngClass]="{'max-lg:hidden': !menuOpen, 'lg:block': true, 'max-lg:fixed': true, 'max-lg:bg-white': true, 'max-lg:w-2/3': true, 'max-lg:min-w-[300px]': true, 'max-lg:top-0': true, 'max-lg:left-0': true, 'max-lg:p-4': true, 'max-lg:h-full': true, 'max-lg:shadow-md': true, 'max-lg:overflow-auto': true, 'max-lg:before:fixed': true, 'max-lg:before:bg-black': true, 'max-lg:before:opacity-40': true, 'max-lg:before:inset-0': true, 'max-lg:before:z-50': true}">
+      <!-- Close Button -->
+      <button (click)="toggleMenu()" aria-label="Close Menu"
+              class="lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white w-9 h-9 flex items-center justify-center border">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 fill-black" viewBox="0 0 320.591 320.591">
+          <path d="M30.391 318.583a30.37 30.37 0 0 1-21.56-7.288c-11.774-11.844-11.774-30.973 0-42.817L266.643 10.665c12.246-11.459 31.462-10.822 42.921 1.424 10.362 11.074 10.966 28.095 1.414 39.875L51.647 311.295a30.366 30.366 0 0 1-21.256 7.288z"></path>
+          <path d="M287.9 318.583a30.37 30.37 0 0 1-21.257-8.806L8.83 51.963C-2.078 39.225-.595 20.055 12.143 9.146c11.369-9.736 28.136-9.736 39.504 0l259.331 257.813c12.243 11.462 12.876 30.679 1.414 42.922-.456.487-.927.958-1.414 1.414a30.368 30.368 0 0 1-23.078 7.288z"></path>
         </svg>
       </button>
-    </div>
 
-    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-      <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-yellow-600 rounded-lg bg-yellow-700 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-yellow-800 md:dark:bg-yellow-900">
-        <li>
-          <a href=" " class="block py-2 px-3 text-white bg-red-700 rounded md:bg-transparent md:text-red-700 md:p-0 md:dark:text-red-500" aria-current="page">Home</a>
+      <ul class="lg:flex lg:gap-x-4 max-lg:space-y-3 z-50">
+        <li class="max-lg:border-b max-lg:pb-4 px-3 lg:hidden">
+          <a href="javascript:void(0)">
+            <img src="https://wordpress.vecurosoft.com/huntar/wp-content/uploads/2023/07/logo.svg" alt="Readymade UI Logo" class="w-36">
+          </a>
         </li>
-        <li>
-          <a href=" " class="block py-2 px-3 text-white bg-red-700 rounded md:bg-transparent md:text-red-700 md:p-0 md:dark:text-red-500" aria-current="page">Home</a>
+        <li class="max-lg:border-b max-lg:py-3 px-3">
+          <a href="javascript:void(0)" class="hover:text-[#6a994e] text-[#6a994e] block font-semibold text-base">Home</a>
         </li>
-        <li>
-          <a href=" " class="block py-2 px-3 text-white bg-red-700 rounded md:bg-transparent md:text-red-700 md:p-0 md:dark:text-red-500" aria-current="page">Home</a>
+        <li class="max-lg:border-b max-lg:py-3 px-3">
+          <a href="javascript:void(0)" class="hover:text-[#6a994e] text-black block font-semibold text-base">Team</a>
         </li>
-        <li>
-          <a href=" " class="block py-2 px-3 text-white bg-red-700 rounded md:bg-transparent md:text-red-700 md:p-0 md:dark:text-red-500" aria-current="page">Home</a>
+        <li class="max-lg:border-b max-lg:py-3 px-3">
+          <a href="javascript:void(0)" class="hover:text-[#6a994e] text-black block font-semibold text-base">Feature</a>
+        </li>
+        <li class="max-lg:border-b max-lg:py-3 px-3">
+          <a href="javascript:void(0)" class="hover:text-[#6a994e] text-black block font-semibold text-base">Blog</a>
+        </li>
+        <li class="max-lg:border-b max-lg:py-3 px-3">
+          <a href="javascript:void(0)" class="hover:text-[#6a994e] text-black block font-semibold text-base">About</a>
+        </li>
+        <li class="max-lg:border-b max-lg:py-3 px-3">
+          <a href="javascript:void(0)" class="hover:text-[#6a994e] text-black block font-semibold text-base">Contact</a>
         </li>
       </ul>
     </div>
+
+    <!-- Action Buttons -->
+    <div class="flex ml-auto">
+      <button routerLink="login"
+        class="px-4 py-2 text-sm rounded-md font-semibold text-white border-2 border-[#7AA95C] bg-[#7AA95C] hover:bg-[#6a994e]">
+        Sign up
+      </button>
+
+      <!-- Open Menu Button -->
+      <div id="toggleOpen" class="flex ml-auto lg:hidden">
+        <button (click)="toggleMenu()" aria-label="Open Menu" class="ml-4">
+          <svg class="w-7 h-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
-</nav>
-
-
-
+</header>
 <router-outlet></router-outlet>
+<footer class=" text-gray-300 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Logo and Description -->
+      <div>
+        <img src="https://wordpress.vecurosoft.com/huntar/wp-content/uploads/2023/07/logo-3.svg" alt="Logo" class="mb-4">
+        <p class="text-sm">
+          It is a long established fact that a reader will be distracted by the readable content Lorem ipsum placeholder text commonly used.
+        </p>
+        <div class="mt-4 flex space-x-4">
+          <a href="https://www.facebook.com/" target="_blank" class="text-gray-300 hover:text-white">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.twitter.com/" target="_blank" class="text-gray-300 hover:text-white">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.youtube.com/" target="_blank" class="text-gray-300 hover:text-white">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank" class="text-gray-300 hover:text-white">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Useful Links -->
+      <div>
+        <h2 class="text-white text-lg font-semibold mb-4">Useful Links</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://www.google.com/maps/@23.727009,90.4219455,15z" class="hover:underline">Location &amp; Maps</a></li>
+          <li><a href="https://wordpress.vecurosoft.com/huntar/contact-us/" class="hover:underline">Accommodation</a></li>
+          <li><a href="https://wordpress.vecurosoft.com/huntar/contact-us/" class="hover:underline">Food &amp; Drinks</a></li>
+          <li><a href="https://wordpress.vecurosoft.com/huntar/blog/" class="hover:underline">Our Blogs</a></li>
+          <li><a href="https://wordpress.vecurosoft.com/huntar/contact-us/" class="hover:underline">Career</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Information -->
+      <div>
+        <h2 class="text-white text-lg font-semibold mb-4">Contact Us</h2>
+        <p class="text-sm mb-2"><i class="fas fa-envelope mr-2"></i><a href="mailto:info@example.com" class="hover:underline">infocom</a></p>
+        <p class="text-sm mb-4"><i class="fas fa-phone-alt mr-2"></i><a href="tel:+56923162156" class="hover:underline">+569 2316 2156</a></p>
+        <form action="#" class="flex space-x-2">
+          <input type="email" placeholder="Enter Your Email" class="w-full px-3 py-2 text-gray-900 rounded-md focus:ring focus:ring-blue-300" required>
+          <button type="submit" class="border-[#7AA95C] bg-[#7AA95C] text-white px-4 py-2 rounded-md hover:bg-[#386641]">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="mt-8 border-t border-gray-700 pt-4 flex flex-col md:flex-row justify-between items-center text-sm">
+      <p>© 2024 <a href="https://wordpress.vecurosoft.com/huntar/" class="hover:underline">Huntar</a>. All Rights Reserved By <a href="https://themeforest.net/user/vecuro_themes" class="hover:underline">Vecuro</a>.</p>
+      <ul class="flex space-x-4 mt-4 md:mt-0">
+        <li><a href="https://en.wikipedia.org/wiki/Privacy_policy" class="hover:underline">Privacy</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Necessity_and_sufficiency" class="hover:underline">Terms</a></li>
+        <li><a href="https://wordpress.vecurosoft.com/huntar/contact-us/" class="hover:underline">Contact</a></li>
+        <li><a href="https://wordpress.vecurosoft.com/huntar/about/" class="hover:underline">About</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+
+

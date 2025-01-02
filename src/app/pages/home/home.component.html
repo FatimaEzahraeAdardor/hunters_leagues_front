@@ -1,82 +1,92 @@
-<div class="min-h-screen bg-gray-900 text-white">
-  <app-nav-bar></app-nav-bar>
-  <!-- Hero Section -->
-  <section class="relative h-screen flex items-center justify-center overflow-hidden">
-    <!-- Content -->
-    <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
-      <h1>Hunters League</h1>
-      <p class="text-xl md:text-2xl text-gray-300 mb-8">
-        Embark on epic hunts, forge powerful alliances, and become a legendary hunter
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button class="px-8 py-4 bg-yellow-600 rounded-lg font-semibold hover:bg-yellow-700 transition-all transform hover:scale-105">
-          Join the Hunt
-        </button>
-        <button class="px-8 py-4 border-2 border-yellow-600 rounded-lg font-semibold hover:bg-yellow-600/20 transition-all">
-          Learn More
-        </button>
+<section class="relative w-full">
+  <!-- Slider Wrapper -->
+  <div class="relative overflow-hidden">
+    <!-- Slide 1 -->
+    <div
+      class="relative bg-cover bg-center h-screen flex items-center justify-center"
+      style="background-image: url('https://wordpress.vecurosoft.com/huntar/wp-content/uploads/2021/11/hero-img-2a.jpg');"
+    >
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-black opacity-50"></div>
+
+      <div class="text-center text-white relative z-10">
+        <h5 class="text-lg font-light mb-4 animate-slide-in-up animation-delay-100">
+          There is no hunting like the hunting of man
+        </h5>
+        <h1 class="text-4xl md:text-5xl font-bold mb-8 animate-slide-in-up animation-delay-300">
+          There's no season like deer season.
+        </h1>
+        <a
+          href="https://wordpress.vecurosoft.com/huntar/contact-us/"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-[#386641] hover:bg-[#7AA95C] text-white font-medium rounded-lg animate-slide-in-up animation-delay-500"
+        >
+          <i class="fas fa-paper-plane"></i> Explore Us
+        </a>
       </div>
     </div>
-  </section>
-  <!-- Features Section -->
-  <section class="py-20 bg-yellow-900/40">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center mb-16">Why Join the League?</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-yellow-800/50 p-6 rounded-xl hover:bg-yellow-700/50 transition-colors">
-          <div class="mb-4">
-            <i class="fas fa-trophy text-4xl text-yellow-500"></i>
+  </div>
+</section>
+<div   class="w-full grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 px-10 lg:px-48 py-10">
+    <div class="relative w-full max-w-lg bg-gray-900 shadow-xl rounded-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-transform duration-300">
+      <!-- Background Image -->
+      <div class="absolute inset-0">
+        <img src="https://imgs.search.brave.com/jBU1XSnzK87_Urt0HSJyUmJiAW9xJJIUTr_UlA3L1uY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxOS8x/Mi8wNS8xMC8wMS9m/b3Jlc3QtNDY3NDcw/M182NDAuanBn"
+             alt="Competition Background"
+             class="w-full h-full object-cover opacity-30">
+      </div>
+
+      <!-- Content -->
+      <div class="relative p-8 z-10 text-white">
+        <!-- Title -->
+        <h1 class="text-xl font-bold mb-4 drop-shadow-lg text-yellow-400">
+          test
+        </h1>
+
+        <!-- Details -->
+        <div class="mt-4 space-y-5">
+          <!-- Date -->
+          <div class="flex items-center text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span class="text-white">test</span>
           </div>
-          <h3 class="text-xl font-semibold mb-2">Epic Hunts</h3>
-          <p class="text-gray-300">Track and hunt legendary creatures across vast landscapes</p>
+
+          <!-- Location -->
+          <div class="flex items-center  text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span class="text-white">test</span>
+          </div>
+
+          <!-- Participants -->
+          <div class="flex items-center  text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <span class="text-white">Participants: test</span>
+          </div>
+
+          <!-- Species Type -->
+          <div class="flex items-center text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.9 7.1C13.2 4.6 11 .1 11 .1s-2.2 4.5-2.9 7c-.7 2.4-1.6 3.6-2.8 4.2-1.2.6-3.5.4-3.5.4s1.7 1.9 2.9 2.3c1.2.4 2.3 1.3 2.3 3.7 0 2.4-1.3 4-1.3 4s2.1-.8 3.4-2.4c1.3-1.6 3.2-2.1 3.2-2.1s1.8.5 3.2 2.1c1.3 1.6 3.4 2.4 3.4 2.4s-1.3-1.6-1.3-4c0-2.4 1.1-3.3 2.3-3.7 1.2-.4 2.9-2.3 2.9-2.3s-2.3.2-3.5-.4c-1.2-.6-2.1-1.8-2.8-4.2z" />
+            </svg>
+            <span class="text-white">Species: test</span>
+          </div>
         </div>
-        <div class="bg-yellow-800/50 p-6 rounded-xl hover:bg-yellow-700/50 transition-colors">
-          <div class="mb-4">
-            <i class="fas fa-shield text-4xl text-yellow-500"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Form Alliances</h3>
-          <p class="text-gray-300">Team up with fellow hunters to tackle challenging missions</p>
-        </div>
-        <div class="bg-yellow-800/50 p-6 rounded-xl hover:bg-yellow-700/50 transition-colors">
-          <div class="mb-4">
-            <i class="fas fa-crown text-4xl text-yellow-500"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Earn Glory</h3>
-          <p class="text-gray-300">Rise through the ranks and become a legendary hunter</p>
+
+        <!-- Registration Status -->
+        <div class="mt-4 border-t border-gray-700 pt-3">
+            <span class="inline-block text-sm px-3 py-1 rounded-full bg-yellow-400 text-gray-900  ">
+              Registration Open
+            </span>
+            <span class="inline-block text-sm px-3 py-1 rounded-full bg-red-500 text-gray-900 ">
+              Registration Closed
+            </span>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Stats Section -->
-  <section class=" mt-10 py-20 bg-gray-900">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="grid md:grid-cols-3 gap-8 text-center">
-        <div class="p-6 bg-yellow-800/30 rounded-xl">
-          <div class="text-4xl font-bold text-yellow-500 mb-2">10K+</div>
-          <div class="text-yellow-100">Active Hunters</div>
-        </div>
-        <div class="p-6 bg-yellow-800/30 rounded-xl">
-          <div class="text-4xl font-bold text-yellow-500 mb-2">1000+</div>
-          <div class="text-yellow-100">Completed Hunts</div>
-        </div>
-        <div class="p-6 bg-yellow-800/30 rounded-xl">
-          <div class="text-4xl font-bold text-yellow-500 mb-2">50+</div>
-          <div class="text-yellow-100">Unique Regions</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class=" mt-10 py-20 bg-gradient-to-b from-yellow-900/40 to-gray-900">
-    <div class="max-w-4xl mx-auto text-center px-4">
-      <h2 class="text-4xl font-bold mb-6">Ready to Begin Your Journey?</h2>
-      <p class="text-xl text-gray-300 mb-8 pb-8">
-        Join thousands of hunters in their quest for glory and adventure
-      </p>
-
-    </div>
-  </section>
 </div>
-

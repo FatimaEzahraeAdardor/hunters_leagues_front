@@ -3,12 +3,13 @@ import { RouterLink } from "@angular/router";
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { AuthService } from "../../core/services/auth.service";
 import {Router} from "@angular/router";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, CommonModule, NgOptimizedImage],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -28,10 +29,17 @@ export class LoginComponent {
       console.log(this.form.value);
       this.authService.login(this.form.value).subscribe({
         next: (response: any) => {
-          this.router.navigate(['dashboard']);
+          const userRole = this.authService.getUserRole();
+          if (userRole === 'ROLE_ADMIN') {
+            this.router.navigate(['dashboard']);
+          }else {
+            this.router.navigate(['']);
+          }
         },
         error: (err) => {
           console.error("Login failed:", err);
+          alert('Invalid email or password. Please try again.');
+
         }
       });
     } else {

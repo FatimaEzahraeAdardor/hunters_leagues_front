@@ -4,14 +4,18 @@ import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {authGuard} from "./core/guards/auth.guard";
+import {NavBarComponent} from "./layout/nav-bar.component";
+import {adminGuard} from "./core/guards/admin.guard";
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent,
-  children:[
-    { path: 'login', component: LoginComponent, canActivate: [authGuard] },
-    { path: 'register', component: RegisterComponent, canActivate: [authGuard]},
-  ]},
-  { path: 'dashboard', component: DashboardComponent },
+  { path: '', component: NavBarComponent,
+    children:[
+      { path: '', component: HomeComponent },
+    ]
+  },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent},
+  { path: 'dashboard', component: DashboardComponent , canActivate: [authGuard,adminGuard]},
 
 
 
