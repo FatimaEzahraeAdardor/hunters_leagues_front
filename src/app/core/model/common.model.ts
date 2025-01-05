@@ -1,6 +1,10 @@
 export interface User{
   id: string;
   username: string;
+  firstname: string;
+  lastname: string;
+  cin: string;
+  nationality: string;
   email: string;
   role: string;
 
@@ -25,4 +29,11 @@ export interface ApiResponse<T>{
   error?: string;
   token?: string;
   data?: T;
+}
+export interface Page<T> {
+  content: T[];
+  totalElements: number;
+  totalPages: number;
+  size: number;
+  number: number;
 }

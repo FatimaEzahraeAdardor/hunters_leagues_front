@@ -6,6 +6,7 @@ import {RegisterComponent} from "./pages/register/register.component";
 import {authGuard} from "./core/guards/auth.guard";
 import {NavBarComponent} from "./layout/nav-bar.component";
 import {adminGuard} from "./core/guards/admin.guard";
+import {UserComponent} from "./pages/user/user.component";
 
 export const routes: Routes = [
   { path: '', component: NavBarComponent,
@@ -15,7 +16,9 @@ export const routes: Routes = [
   },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent},
-  { path: 'dashboard', component: DashboardComponent , canActivate: [authGuard,adminGuard]},
+  { path: 'dashboard', component: DashboardComponent , canActivate: [authGuard,adminGuard],children:[
+    { path: 'users', component: UserComponent },
+    ]},
 
 
 
