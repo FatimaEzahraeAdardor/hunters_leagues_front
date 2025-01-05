@@ -5,6 +5,10 @@ export const API_ENDPOINT = {
     Login: `${apiUrl}/auth/login`,
 
   },
+  users: `${apiUrl}/users/all`,
+  deleteUser: `${apiUrl}/users/delete`,
+  updateUser: `${apiUrl}/users/update`,
+
 }
   export const LocalStorage ={
     token: "USER-TOKEN",
