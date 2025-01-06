@@ -8,6 +8,7 @@ export const API_ENDPOINT = {
   users: `${apiUrl}/users/all`,
   deleteUser: `${apiUrl}/users/delete`,
   updateUser: `${apiUrl}/users/update`,
+  competitions: `${apiUrl}/competitions/all`,
 
 }
   export const LocalStorage ={

@@ -7,11 +7,13 @@ import {authGuard} from "./core/guards/auth.guard";
 import {NavBarComponent} from "./layout/nav-bar.component";
 import {adminGuard} from "./core/guards/admin.guard";
 import {UserComponent} from "./pages/user/user.component";
+import {CompetitionComponent} from "./pages/competition/competition.component";
 
 export const routes: Routes = [
   { path: '', component: NavBarComponent,
     children:[
       { path: '', component: HomeComponent },
+      { path: 'competitions', component: CompetitionComponent },
     ]
   },
     { path: 'login', component: LoginComponent },
