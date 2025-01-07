@@ -47,9 +47,12 @@
 
     <!-- Action Buttons -->
     <div class="flex ml-auto">
-      <button routerLink="login"
+      <button *ngIf="getToken()==null" routerLink="login"
         class="px-4 py-2 text-sm rounded-md font-semibold text-white border-2 border-[#7AA95C] bg-[#7AA95C] hover:bg-[#6a994e]">
         Sign up
+      </button>
+      <button *ngIf="getToken()!=null" (click)="OnLougout()" class="relative block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none">
+        <img class="object-cover w-full h-full" src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=296&q=80" alt="Your avatar">
       </button>
 
       <!-- Open Menu Button -->
