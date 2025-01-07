@@ -10,10 +10,9 @@ export const API_ENDPOINT = {
   updateUser: `${apiUrl}/users/update`,
   competitions: `${apiUrl}/competitions/all`,
   participate: `${apiUrl}/participation/save`,
+  species: `${apiUrl}/species/all`,
 
 }
   export const LocalStorage ={
     token: "token",
-    userId: 'USER-ID',
-
   }
