@@ -5,6 +5,7 @@ import {Species} from "../model/species";
 import {Page, User} from "../model/common.model";
 import * as http from "node:http";
 import {API_ENDPOINT} from "../constants/constants";
+import {UUID} from "node:crypto";
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,11 @@ export class SpeciesService {
     const token = localStorage.getItem("token");
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<Species>(`${API_ENDPOINT.addSpecies}`,species,{ headers } )
+  }
+  deleteSpecie(id: UUID): Observable<any> {
+    const token = localStorage.getItem("token");
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${API_ENDPOINT.deleteSpecies}/${id}`, {headers, responseType: 'text'});
+
   }
 }

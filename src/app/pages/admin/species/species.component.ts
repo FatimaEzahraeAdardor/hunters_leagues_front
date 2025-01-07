@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {SpeciesService} from "../../../core/services/species.service";
+import {UUID} from "node:crypto";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-species',
@@ -40,6 +42,11 @@ constructor(private specieService: SpeciesService ,private fb: FormBuilder ) {
         next: (response: any) => {
           console.log("add specie done succefully");
           this.closeModal();
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'You added  the specie successfully!',
+          });
         }
       })
     }
@@ -74,6 +81,21 @@ constructor(private specieService: SpeciesService ,private fb: FormBuilder ) {
   }
   closeModal(): void {
   this.isModalOpen = false;
+  }
+
+  deleteSpecies(id: UUID): void {
+    console.log('Deleting specie with ID:', id);
+    this.specieService.deleteSpecie(id).subscribe({
+      next: (response: any) => {
+        console.log('Delete specie successful:', response);
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'You deleted the specie successfully!',
+        });
+        this.fetchSpecies();
+      },
+    });
   }
 
 
