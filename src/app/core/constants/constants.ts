@@ -11,6 +11,7 @@ export const API_ENDPOINT = {
   competitions: `${apiUrl}/competitions/all`,
   participate: `${apiUrl}/participation/save`,
   species: `${apiUrl}/species/all`,
+  addSpecies: `${apiUrl}/species/save`,
 
 }
   export const LocalStorage ={

@@ -18,4 +18,9 @@ export class SpeciesService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<Page<Species>>(`${API_ENDPOINT.species}?page=${page}&size=${size}`, {headers});
   }
+  addSpecie(species: Species): Observable<Species> {
+    const token = localStorage.getItem("token");
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<Species>(`${API_ENDPOINT.addSpecies}`,species,{ headers } )
+  }
 }

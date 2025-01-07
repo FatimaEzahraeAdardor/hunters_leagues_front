@@ -1,6 +1,6 @@
 export interface Species {
   name: string;
-  SpeciesType: string;
+  category: string;
   minimumWeight:number;
   difficulty:string;
   points:number;

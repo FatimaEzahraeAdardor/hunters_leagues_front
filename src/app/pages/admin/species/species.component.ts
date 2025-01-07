@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {SpeciesService} from "../../../core/services/species.service";
 
 @Component({
@@ -15,11 +15,35 @@ import {SpeciesService} from "../../../core/services/species.service";
   styleUrl: './species.component.css'
 })
 export class SpeciesComponent implements OnInit {
+  speciesTypes: string[] = ['SEA', 'BIG_GAME', 'BIRD'];
+  difficulties: string[] = ['COMMON', 'RARE', 'EPIC','LEGENDARY'];
+  isModalOpen= false;
   species:any[]=[];
   currentPage = 0;
   pageSize = 3;
   totalItems = 0;
-constructor(private specieService: SpeciesService) {}
+  form: FormGroup;
+
+constructor(private specieService: SpeciesService ,private fb: FormBuilder ) {
+  this.form = this.fb.group({
+    name: new FormControl('', [Validators.required]),
+    category:new FormControl('', Validators.required),
+    minimumWeight: [0, [Validators.required, Validators.min(0)]],
+    difficulty: new FormControl('', Validators.required),
+    points: [0, [Validators.required, Validators.min(0)]],
+
+  })
+}
+  onSubmit() {
+    if (this.form.valid) {
+      this.specieService.addSpecie(this.form.value).subscribe({
+        next: (response: any) => {
+          console.log("add specie done succefully");
+          this.closeModal();
+        }
+      })
+    }
+  }
 
   ngOnInit(): void {
     this.fetchSpecies();
@@ -45,6 +69,13 @@ constructor(private specieService: SpeciesService) {}
   const totalPages = Math.ceil(this.totalItems / this.pageSize);
   return Array.from({ length: totalPages }, (_, i) => i);
   }
+  openModal(): void {
+  this.isModalOpen = true;
+  }
+  closeModal(): void {
+  this.isModalOpen = false;
+  }
+
 
 
 
