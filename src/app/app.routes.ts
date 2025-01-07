@@ -14,6 +14,7 @@ export const routes: Routes = [
     children:[
       { path: '', component: HomeComponent },
       { path: 'competitions', component: CompetitionComponent },
+      { path: 'participate/:id', component: CompetitionComponent },
     ]
   },
     { path: 'login', component: LoginComponent },
