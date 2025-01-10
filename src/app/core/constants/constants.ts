@@ -13,6 +13,7 @@ export const API_ENDPOINT = {
   species: `${apiUrl}/species/all`,
   addSpecies: `${apiUrl}/species/save`,
   deleteSpecies: `${apiUrl}/species/delete`,
+  updateSpecies: `${apiUrl}/species/update`,
 
 }
   export const LocalStorage ={

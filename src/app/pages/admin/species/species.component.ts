@@ -20,13 +20,17 @@ export class SpeciesComponent implements OnInit {
   speciesTypes: string[] = ['SEA', 'BIG_GAME', 'BIRD'];
   difficulties: string[] = ['COMMON', 'RARE', 'EPIC','LEGENDARY'];
   isModalOpen= false;
+  isEditModalOpen = false;
   species:any[]=[];
   currentPage = 0;
   pageSize = 3;
   totalItems = 0;
   form: FormGroup;
+  formEdit: FormGroup;
+  selectedSpecie: any = null;
 
-constructor(private specieService: SpeciesService ,private fb: FormBuilder ) {
+
+  constructor(private specieService: SpeciesService ,private fb: FormBuilder ) {
   this.form = this.fb.group({
     name: new FormControl('', [Validators.required]),
     category:new FormControl('', Validators.required),
@@ -35,6 +39,13 @@ constructor(private specieService: SpeciesService ,private fb: FormBuilder ) {
     points: [0, [Validators.required, Validators.min(0)]],
 
   })
+    this.formEdit = this.fb.group({
+      name: new FormControl('', [Validators.required]),
+      category: new FormControl('', Validators.required),
+      minimumWeight: [0, [Validators.required, Validators.min(0)]],
+      difficulty: new FormControl('', Validators.required),
+      points: [0, [Validators.required, Validators.min(0)]],
+    });
 }
   onSubmit() {
     if (this.form.valid) {
@@ -82,7 +93,17 @@ constructor(private specieService: SpeciesService ,private fb: FormBuilder ) {
   closeModal(): void {
   this.isModalOpen = false;
   }
-
+  openEditModal(specie: any): void {
+    this.selectedSpecie = specie; // Ensure this includes the id
+    console.log('Selected specie:', this.selectedSpecie); // Log the selected user
+    this.formEdit.patchValue(specie);
+    console.log('Edit form values:', this.formEdit.value); // Log the form values
+    this.isEditModalOpen = true;
+  }
+ closeEditModal(): void {
+   this.selectedSpecie = null;
+   this.isEditModalOpen = false;
+ }
   deleteSpecies(id: UUID): void {
     console.log('Deleting specie with ID:', id);
     this.specieService.deleteSpecie(id).subscribe({
@@ -98,7 +119,26 @@ constructor(private specieService: SpeciesService ,private fb: FormBuilder ) {
     });
   }
 
+  onUpdate(): void {
+    if (this.formEdit.valid && this.selectedSpecie) {
+      const updatedSpecie = this.formEdit.value;
+      console.log('Updating specie with ID:', this.selectedSpecie.id); // Debugging
+      console.log('Payload:', updatedSpecie); // Debugging
 
-
-
-}
+      this.specieService.updateSpecie(this.selectedSpecie.id, updatedSpecie).subscribe({
+        next: (response: any) => {
+          console.log('Update specie successful:', response);
+          this.closeEditModal();
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'You updated the specie successfully!',
+          });
+          this.fetchSpecies();
+        },
+        error: (error) => {
+          console.error('Error updating specie:', error);
+        },
+      });
+    }
+  }}

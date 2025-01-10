@@ -30,4 +30,9 @@ export class SpeciesService {
     return this.http.delete(`${API_ENDPOINT.deleteSpecies}/${id}`, {headers, responseType: 'text'});
 
   }
+  updateSpecie(id: UUID, species: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<Species>(`${API_ENDPOINT.updateSpecies}/${id}`, species, { headers });
+  }
 }
