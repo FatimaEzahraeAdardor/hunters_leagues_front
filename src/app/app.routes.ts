@@ -8,6 +8,7 @@ import {NavBarComponent} from "./layout/nav-bar.component";
 import {adminGuard} from "./core/guards/admin.guard";
 import {UserComponent} from "./pages/user/user.component";
 import {CompetitionComponent} from "./pages/competition/competition.component";
+import {SpeciesComponent} from "./pages/admin/species/species.component";
 
 export const routes: Routes = [
   { path: '', component: NavBarComponent,
@@ -19,8 +20,9 @@ export const routes: Routes = [
   },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent},
-  { path: 'dashboard', component: DashboardComponent , canActivate: [authGuard,adminGuard],children:[
-    { path: 'users', component: UserComponent },
+    { path: 'dashboard', component: DashboardComponent , canActivate: [authGuard,adminGuard],children:[
+      { path: 'users', component: UserComponent },
+      { path: 'species' , component: SpeciesComponent },
     ]},
 
 

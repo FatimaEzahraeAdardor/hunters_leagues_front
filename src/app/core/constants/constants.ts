@@ -10,10 +10,12 @@ export const API_ENDPOINT = {
   updateUser: `${apiUrl}/users/update`,
   competitions: `${apiUrl}/competitions/all`,
   participate: `${apiUrl}/participation/save`,
+  species: `${apiUrl}/species/all`,
+  addSpecies: `${apiUrl}/species/save`,
+  deleteSpecies: `${apiUrl}/species/delete`,
+  updateSpecies: `${apiUrl}/species/update`,
 
 }
   export const LocalStorage ={
     token: "token",
-    userId: 'USER-ID',
-
   }
