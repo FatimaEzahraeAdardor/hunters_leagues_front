@@ -18,7 +18,6 @@ export class authInterceptor implements HttpInterceptor {
       });
       return next.handle(cloned);
     }
-
     console.log('No token found, proceeding without Authorization header.');
     return next.handle(req);
   }

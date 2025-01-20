@@ -25,4 +25,10 @@ export class CompetitionService {
     const body = {userEmail, competitionId};
     return this.http.post(url, body, {headers, responseType: 'text'});
   }
+  saveCompetition(competition: Competition): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${API_ENDPOINT.addCompetition}`;
+    return this.http.post(url, competition , {headers, responseType: 'text'});
+  }
 }
