@@ -120,6 +120,17 @@
       </div>
 
       <!-- Date Field -->
+<!--      <label class="block text-sm text-gray-700">Date</label>-->
+<!--      <input-->
+<!--        type="date"-->
+<!--        formControlName="date"-->
+<!--        class="px-4 py-2.5 mt-2 bg-[#f0f1f2] text-gray-800 w-full text-sm focus:bg-transparent outline-blue-600 rounded-md"-->
+<!--      />-->
+<!--      <div *ngIf="form.get('date')?.invalid && form.get('date')?.touched" class="text-red-500 text-sm">-->
+<!--        Date is required.-->
+<!--      </div>-->
+
+      <!-- Date Field -->
       <label class="block text-sm text-gray-700">Date</label>
       <input
         type="date"
@@ -128,6 +139,17 @@
       />
       <div *ngIf="form.get('date')?.invalid && form.get('date')?.touched" class="text-red-500 text-sm">
         Date is required.
+      </div>
+
+      <!-- Time Field -->
+      <label class="block text-sm text-gray-700">Time</label>
+      <input
+        type="time"
+        formControlName="time"
+        class="px-4 py-2.5 mt-2 bg-[#f0f1f2] text-gray-800 w-full text-sm focus:bg-transparent outline-blue-600 rounded-md"
+      />
+      <div *ngIf="form.get('time')?.invalid && form.get('time')?.touched" class="text-red-500 text-sm">
+        Time is required.
       </div>
 
       <!-- Species Type Field -->
@@ -158,7 +180,7 @@
       <label class="block text-sm text-gray-700">Max Participants</label>
       <input
         type="number"
-        placeholder="Enter Max Participants"
+        placeholder="Enter Min Participants"
         formControlName="maxParticipants"
         class="px-4 py-2.5 mt-2 bg-[#f0f1f2] text-gray-800 w-full text-sm focus:bg-transparent outline-blue-600 rounded-md"
       />

@@ -25,7 +25,7 @@ export class CompetitionService {
     const body = {userEmail, competitionId};
     return this.http.post(url, body, {headers, responseType: 'text'});
   }
-  saveCompetition(competition: Competition): Observable<any> {
+  saveCompetition(competition: any): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = `${API_ENDPOINT.addCompetition}`;

@@ -26,35 +26,50 @@ export class CompetitionAdminComponent implements OnInit {
   speciesTypes: string[] = ['SEA', 'BIG_GAME', 'BIRD'];
   constructor(private competitionService: CompetitionService ,private fb: FormBuilder) {
     this.form = this.fb.group({
-      code: new FormControl('', Validators.required),
-      location: new FormControl('', Validators.required),
-      date: new FormControl('', Validators.required),
-      speciesType: new FormControl('', Validators.required),
-      minParticipants: new FormControl('', Validators.required),
-      maxParticipants: new FormControl('', Validators.required),
-    })
+      code: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+_\d{4}-\d{2}-\d{2}$/)]],
+      location: ['', Validators.required],
+      date: ['', Validators.required],
+      time: ['', Validators.required], // Add time control
+      speciesType: ['', Validators.required],
+      minParticipants: [1, [Validators.required, Validators.min(1)]],
+      maxParticipants: [50, [Validators.required, Validators.min(1)]],
+      openRegistration: [true]
+    });
   }
   ngOnInit(): void {
     this.fetchCompetitions();
   }
   onSubmit(): void {
-    if (this.form.invalid) {
-      this.competitionService.saveCompetition(this.form.value).subscribe({
+    if (this.form.valid) {
+      const date = this.form.get('date')?.value; // Get date value
+      const time = this.form.get('time')?.value; // Get time value
+
+      // Combine date and time into a LocalDateTime string
+      const dateTime = `${date}T${time}:00`;
+
+      // Create the payload
+      const payload = {
+        ...this.form.value,
+        date: dateTime // Replace date with the combined dateTime
+      };
+
+      // Send the payload to the backend
+      this.competitionService.saveCompetition(payload).subscribe({
         next: (response: any) => {
-          console.log("ad competition done succefully");
+          console.log('Competition created successfully', response);
           Swal.fire({
             icon: 'success',
             title: 'Success',
-            text: 'You added  the competition successfully!',
+            text: 'You added the competition successfully!',
           });
+          this.closeModal();
         },
-        error: error => {
-          console.log(error);
+        error: (error) => {
+          console.error('Error creating competition', error);
         }
-      })
+      });
     }
-  }
-  fetchCompetitions(): void {
+  }  fetchCompetitions(): void {
     this.competitionService.getCompetition(this.currentPage, this.pageSize).subscribe(
       (response) => {
         this.competitions = response.content;
