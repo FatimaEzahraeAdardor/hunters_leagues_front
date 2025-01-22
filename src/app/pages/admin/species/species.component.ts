@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
+import {NgForOf, NgIf,CommonModule} from "@angular/common";
+
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {SpeciesService} from "../../../core/services/species.service";
 import {UUID} from "node:crypto";
@@ -11,7 +12,8 @@ import Swal from "sweetalert2";
     imports: [
         NgForOf,
         NgIf,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        CommonModule,
     ],
   templateUrl: './species.component.html',
   styleUrl: './species.component.css'
@@ -40,10 +42,10 @@ export class SpeciesComponent implements OnInit {
 
   })
     this.formEdit = this.fb.group({
-      name: new FormControl('', [Validators.required]),
-      category: new FormControl('', Validators.required),
+      name: ['', Validators.required],
+      category: ['', Validators.required],
       minimumWeight: [0, [Validators.required, Validators.min(0)]],
-      difficulty: new FormControl('', Validators.required),
+      difficulty: ['', Validators.required],
       points: [0, [Validators.required, Validators.min(0)]],
     });
 }
@@ -94,10 +96,10 @@ export class SpeciesComponent implements OnInit {
   this.isModalOpen = false;
   }
   openEditModal(specie: any): void {
-    this.selectedSpecie = specie; // Ensure this includes the id
-    console.log('Selected specie:', this.selectedSpecie); // Log the selected user
+    this.selectedSpecie = specie;
+    console.log('Selected specie:', this.selectedSpecie);
     this.formEdit.patchValue(specie);
-    console.log('Edit form values:', this.formEdit.value); // Log the form values
+    console.log('Edit form values:', this.formEdit.value);
     this.isEditModalOpen = true;
   }
  closeEditModal(): void {
@@ -118,13 +120,10 @@ export class SpeciesComponent implements OnInit {
       },
     });
   }
-
   onUpdate(): void {
     if (this.formEdit.valid && this.selectedSpecie) {
-      const updatedSpecie = this.formEdit.value;
-      console.log('Updating specie with ID:', this.selectedSpecie.id); // Debugging
-      console.log('Payload:', updatedSpecie); // Debugging
-
+      console.log('Update specie with ID:', this.formEdit.value);
+      const updatedSpecie = { ...this.selectedSpecie, ...this.formEdit.value };
       this.specieService.updateSpecie(this.selectedSpecie.id, updatedSpecie).subscribe({
         next: (response: any) => {
           console.log('Update specie successful:', response);
@@ -135,6 +134,7 @@ export class SpeciesComponent implements OnInit {
             text: 'You updated the specie successfully!',
           });
           this.fetchSpecies();
+          this.closeEditModal();
         },
         error: (error) => {
           console.error('Error updating specie:', error);

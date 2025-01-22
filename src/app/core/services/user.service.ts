@@ -12,8 +12,8 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getUsers(page: number, size: number): Observable<Page<User>> {
-    const token = localStorage.getItem('token'); // Retrieve the token from local storage
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Add the token to the headers
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.get<Page<User>>(`${API_ENDPOINT.users}?page=${page}&size=${size}`, { headers });
   }
@@ -27,8 +27,8 @@ export class UserService {
 
   }
   updateUser(id: UUID, user: any): Observable<any> {
-    const token = localStorage.getItem('token'); // Retrieve the token from local storage
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Add the token to the headers
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.put(`${API_ENDPOINT.updateUser}/${id}`, user, { headers });
   }
 }

@@ -103,9 +103,9 @@ export class UserComponent implements OnInit {
   }
   openEditModal(user: any): void {
     this.selectedUser = user;
-    console.log('Selected user:', this.selectedUser); // Log the selected user
+    console.log('Selected user:', this.selectedUser);
     this.editForm.patchValue(user);
-    console.log('Edit form values:', this.editForm.value); // Log the form values
+    console.log('Edit form values:', this.editForm.value);
     this.isEditModalOpen = true;
   }
   closeEditModal(): void {
@@ -120,7 +120,8 @@ export class UserComponent implements OnInit {
       this.userService.updateUser(this.selectedUser.id, updatedUser).subscribe(
         () => {
           console.log('User updated successfully');
-          this.fetchUsers(); // Refresh the user list after update
+          this.fetchUsers();
+
           this.closeEditModal();
         },
         (error) => {
