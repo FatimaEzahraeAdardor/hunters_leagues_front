@@ -5,16 +5,28 @@ import { UserService } from '../../core/services/user.service';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthService} from "../../core/services/auth.service";
 import {UUID} from "node:crypto";
+import {
+  selectAllUsers,
+  selectUsersError,
+  selectUsersLoading,
+  selectUsersPagination
+} from "../../store/users/users.selectors";
+import {Store} from "@ngrx/store";
+import {loadUsers} from "../../store/users/users.actions";
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [RouterModule, CommonModule, ReactiveFormsModule], // Add CommonModule here
+  imports: [RouterModule, CommonModule, ReactiveFormsModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
 export class UserComponent implements OnInit {
-  users: any[] = [];
+  users$ = this.store.select(selectAllUsers);
+  loading$ = this.store.select(selectUsersLoading);
+  error$ = this.store.select(selectUsersError);
+  pagination$ = this.store.select(selectUsersPagination);
+  // users: any[] = [];
   currentPage = 0;
   pageSize = 5;
   totalItems = 0;
@@ -23,7 +35,9 @@ export class UserComponent implements OnInit {
   isEditModalOpen = false;
   selectedUser: any = null;
 
-  constructor(private userService: UserService,private fb: FormBuilder,private authService: AuthService) {
+
+  constructor(private userService: UserService,private fb: FormBuilder,private authService: AuthService, private store: Store,
+  ) {
     this.form = this.fb.group({
       username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -62,25 +76,35 @@ export class UserComponent implements OnInit {
     this.fetchUsers();
   }
 
-  fetchUsers(): void {
-    this.userService.getUsers(this.currentPage, this.pageSize).subscribe(
-      (response) => {
-        this.users = response.content;
-        this.totalItems = response.totalElements;
-      },
-      (error) => {
-        console.error('Error fetching users:', error);
-      }
-    );
-  }
 
+  // fetchUsers(): void {
+  //   this.userService.getUsers(this.currentPage, this.pageSize).subscribe(
+  //     (response) => {
+  //       this.users = response.content;
+  //       this.totalItems = response.totalElements;
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching users:', error);
+  //     }
+  //   );
+  // }
+  fetchUsers(): void {
+    this.store.dispatch(loadUsers({ page: this.currentPage, pageSize: this.pageSize }));
+  }
   onPageChange(page: number): void {
     this.currentPage = page;
     this.fetchUsers();
   }
 
+  // getPages(): number[] {
+  //   const totalPages = Math.ceil(this.totalItems / this.pageSize);
+  //   return Array.from({ length: totalPages }, (_, i) => i);
+  // }
   getPages(): number[] {
-    const totalPages = Math.ceil(this.totalItems / this.pageSize);
+    let totalPages = 0;
+    this.pagination$.subscribe(pagination => {
+      totalPages = pagination.totalPages;
+    });
     return Array.from({ length: totalPages }, (_, i) => i);
   }
 
@@ -92,7 +116,7 @@ export class UserComponent implements OnInit {
   closeModal = () => {
     this.isModalOpen = false;
   }
-  deleteUser(userId: UUID): void {
+  deleteUser(userId: string): void {
       this.userService.deleteUser(userId).subscribe({
         next: (response: any) => {
           console.log("deleted user", response);
