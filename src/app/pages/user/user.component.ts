@@ -12,7 +12,7 @@ import {
   selectUsersPagination
 } from "../../store/users/users.selectors";
 import {Store} from "@ngrx/store";
-import {loadUsers} from "../../store/users/users.actions";
+import {loadUsers, deleteUser} from "../../store/users/users.actions";
 
 @Component({
   selector: 'app-user',
@@ -116,14 +116,21 @@ export class UserComponent implements OnInit {
   closeModal = () => {
     this.isModalOpen = false;
   }
-  deleteUser(userId: string): void {
-      this.userService.deleteUser(userId).subscribe({
-        next: (response: any) => {
-          console.log("deleted user", response);
-          this.fetchUsers();
+  // deleteUser(userId: string): void {
+  //     this.userService.deleteUser(userId).subscribe({
+  //       next: (response: any) => {
+  //         console.log("deleted user", response);
+  //         this.fetchUsers();
+  //
+  //       }
+  //     })
+  // }
 
-        }
-      })
+  deleteUser(userId: string): void {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.store.dispatch(deleteUser({ userId }));
+      this.fetchUsers();
+    }
   }
   openEditModal(user: any): void {
     this.selectedUser = user;

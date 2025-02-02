@@ -12,4 +12,19 @@ export const loadUsersSuccess = createAction(
 export const loadUserFailure = createAction(
   '[Users] Load Users Failure',
   props<{ error: string }>()
-)
+);
+
+export const deleteUser = createAction(
+  '[Users] Delete User',
+  props<{ userId: string }>()
+);
+
+export const deleteUserSuccess = createAction(
+  '[Users] Delete User Success',
+  props<{ userId: string }>()
+);
+
+export const deleteUserFailure = createAction(
+  '[Users] Delete User Failure',
+  props<{ error: string }>()
+);

@@ -1,6 +1,6 @@
 import {UsersState} from "./users.state";
 import {createReducer, on} from "@ngrx/store";
-import {loadUserFailure, loadUsers, loadUsersSuccess} from "./users.actions";
+import {deleteUserFailure, deleteUserSuccess, loadUserFailure, loadUsers, loadUsersSuccess} from "./users.actions";
 
 export const initialState: UsersState ={
   users : [],
@@ -26,6 +26,15 @@ export const usersReducer = createReducer(
     totalPages: data.totalPages
   })),
   on(loadUserFailure, (state,{ error }) => ({
+    ...state,
+    loading: false,
+    error,
+  })),
+on(deleteUserSuccess, (state, { userId }) => ({
+  ...state,
+  users: state.users.filter(user => user.id !== userId)
+})),
+  on(deleteUserFailure, (state, { error }) => ({
     ...state,
     loading: false,
     error,
