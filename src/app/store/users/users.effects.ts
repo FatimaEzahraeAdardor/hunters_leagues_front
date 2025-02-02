@@ -9,15 +9,17 @@ import {
   loadUserFailure,
   deleteUser,
   deleteUserSuccess,
-  deleteUserFailure
+  deleteUserFailure, addUser, addUserSuccess, addUserFailure
 } from './users.actions';
 import {Page, User} from "../../core/model/common.model";
+import {AuthService} from "../../core/services/auth.service";
 
 @Injectable()
 export class UsersEffects {
   constructor(
     private actions$: Actions, // Stream of all actions
-    private userService: UserService // Your service to fetch data
+    private userService: UserService,//
+    private authService : AuthService// Your service to fetch data
   ) {}
 
   // Effect to handle the loadUsers action
@@ -44,4 +46,16 @@ export class UsersEffects {
       )
     )
   );
+  addUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addUser),
+      mergeMap(({ payload }) =>
+        this.authService.register(payload).pipe(
+          map(response => addUserSuccess({ user: response.data! })),
+          catchError(error => of(addUserFailure({ error: error.message })))
+        )
+      )
+    )
+  );
+
 }

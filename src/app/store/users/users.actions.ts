@@ -1,5 +1,5 @@
 import {createAction, props} from "@ngrx/store";
-import {Page, User} from "../../core/model/common.model";
+import {Page, RegisterPayload, User} from "../../core/model/common.model";
 
 export const loadUsers = createAction(
   '[Users] Load Users',
@@ -14,7 +14,23 @@ export const loadUserFailure = createAction(
   props<{ error: string }>()
 );
 
-export const deleteUser = createAction(
+export const addUser = createAction(
+  '[Users] Add User',
+  props<{ payload: RegisterPayload }>()
+);
+
+
+export const addUserSuccess = createAction(
+  '[Users] Add User Success',
+  props<{ user: User }>()
+);
+
+export const addUserFailure = createAction(
+  '[Users] Add User Failure',
+  props<{ error: string}>()
+);
+
+    export const deleteUser = createAction(
   '[Users] Delete User',
   props<{ userId: string }>()
 );

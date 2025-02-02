@@ -12,7 +12,8 @@ import {
   selectUsersPagination
 } from "../../store/users/users.selectors";
 import {Store} from "@ngrx/store";
-import {loadUsers, deleteUser} from "../../store/users/users.actions";
+import {loadUsers, deleteUser, addUser} from "../../store/users/users.actions";
+import {RegisterPayload} from "../../core/model/common.model";
 
 @Component({
   selector: 'app-user',
@@ -59,16 +60,23 @@ export class UserComponent implements OnInit {
 
     });
   }
-  onSubmit() {
+  // onSubmit() {
+  //   if (this.form.valid) {
+  //     this.authService.register(this.form.value).subscribe({
+  //       next: (response: any) => {
+  //         console.log("ad user done succefully");
+  //         this.closeModal();
+  //
+  //       }
+  //
+  //     })
+  //   }
+  // }
+  onSubmit(): void {
     if (this.form.valid) {
-      this.authService.register(this.form.value).subscribe({
-        next: (response: any) => {
-          console.log("ad user done succefully");
-          this.closeModal();
-
-        }
-
-      })
+      const payload: RegisterPayload = this.form.value;
+      this.store.dispatch(addUser({ payload }));
+      this.closeModal();
     }
   }
 
